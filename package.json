@@ -1,6 +1,6 @@
 {
 	"name": "most-cree8",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A poorer less good alternative to most-create",
 	"main": "most-cree8.js",
 	"scripts": {
@@ -8,7 +8,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://archive.voodoowarez.com/most-create"
+		"url": "https://archive.voodoowarez.com/most-cree8"
 	},
 	"keywords": [],
 	"author": "rektide de la faye",
