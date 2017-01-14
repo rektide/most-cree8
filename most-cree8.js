@@ -19,7 +19,7 @@ class MostCreateSource {
 		this._sink= sink
 		this._scheduler= scheduler
 		if( this._fn){
-			this._invokeFn( fn)
+			this._invokeFn( this._fn)
 			delete this._fn
 		}
 		if( this._end){
@@ -62,8 +62,8 @@ class MostCreateSource {
 }
 
 class MostCreate extends Stream {
-	constructor( fn) {
-		super( new MostCreateSource( fn))
+	constructor( fn, cold) {
+		super( new MostCreateSource( fn, cold))
 	}
 }
 
