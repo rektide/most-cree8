@@ -1,7 +1,7 @@
 {
 	"name": "most-cree8",
-	"version": "1.0.1",
-	"description": "A poorer less good alternative to most-create",
+	"version": "2.0.0",
+	"description": "A alternative to most-create",
 	"main": "most-cree8.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"

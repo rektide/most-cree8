@@ -4,32 +4,60 @@ var
   Stream= most.Stream
 
 class MostCreateSource {
-	constructor( fn) {
-		this.fn= fn
+	constructor( fn, cold) {
+		if( !cold){
+			this._invokeFn( fn)
+		}else{
+			this._fn= fn
+		}
+		this._sink= null
+		this._scheduler= null
+		this._dispose= null
+		this._end= null
 	}
 	run( sink, scheduler) {
-		var running = true
-		function add( value){
-			if( running){
-				sink.event( scheduler.now(), value)
+		this._sink= sink
+		this._scheduler= scheduler
+		if( this._fn){
+			this._invokeFn( fn)
+			delete this._fn
+		}
+		if( this._end){
+			return
+		}
+		var dispose= ()=> {
+			if( this._dispose){
+				this._dispose()
 			}
-		}
-		function end( value) {
-			sink.end( scheduler.now(), value)
-			running= false
-		}
-		function error( err){
-			sink.error( scheduler.now(), err)
-		}
-		this.fn( add, end, error)
-		delete this.fn
-		function dispose(){
-			if( fn.dispose) {
-				fn.dispose()
-			}
-			running= false
+			this._sink= null
+			this._scheduler= null
 		}
 		return { dispose}
+	}
+	_invokeFn( fn){
+		var add= value=> {
+			var sink= this._sink
+			if( sink){
+				sink.event( this._scheduler.now(), value)
+			}
+		}
+		var end= value=> {
+			var sink= this._sink
+			if( sink){
+				sink.end( this._scheduler.now(), value)
+			}
+			this._end= true
+			this._sink= null
+			this._scheduler= null
+		}
+		var error= err=> {
+			var sink= this._sink
+			if( sink){
+				sink.error( this._scheduler.now(), err)
+			}
+		}
+		var dispose= fn( add, end, error)
+		this._dispose= dispose
 	}
 }
 

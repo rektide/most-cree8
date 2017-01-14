@@ -9,7 +9,7 @@ function main(){
 		put( 4)
 		put( 6)
 		put( 8)
-	})
+	}, true)
 	stream.forEach(x => console.log(x/2))
 	return stream
 }
