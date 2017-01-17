@@ -16,6 +16,7 @@ class MostCreateSource {
 		this._end= null
 	}
 	run( sink, scheduler) {
+		var isNew= !this._sink
 		this._sink= sink
 		this._scheduler= scheduler
 		if( this._fn){
@@ -31,6 +32,9 @@ class MostCreateSource {
 			}
 			this._sink= null
 			this._scheduler= null
+		}
+		if( isNew&& this.onObservable){
+			this.onObservable()
 		}
 		return { dispose}
 	}
