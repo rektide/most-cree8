@@ -45,7 +45,7 @@ class MostCreateSource {
 		var complete= value=> {
 			var sink= this._sink
 			if( sink){
-				sink.complete( this._scheduler.now(), value)
+				sink.end( this._scheduler.now(), value)
 			}
 			this._complete= true
 			this._sink= null

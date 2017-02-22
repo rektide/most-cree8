@@ -1,6 +1,6 @@
 {
 	"name": "most-cree8",
-	"version": "2.2.0",
+	"version": "2.2.1",
 	"description": "A alternative to most-create",
 	"main": "most-cree8.js",
 	"scripts": {
