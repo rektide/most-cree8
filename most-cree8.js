@@ -64,7 +64,7 @@ class MostCreateSource {
 
 class MostCreate extends Stream {
 	constructor( fn, cold) {
-		super( new MostCreateSource( fn, cold))
+		super( fn instanceof Function? new MostCreateSource( fn, cold): fn)
 	}
 }
 
