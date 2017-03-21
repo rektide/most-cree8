@@ -5,15 +5,15 @@ var
 
 class MostCreateSource {
 	constructor( fn, cold) {
+		this._sink= null
+		this._scheduler= null
+		this._unsubscribe= null
+		this._complete= null
 		if( !cold){
 			this._invokeFn( fn)
 		}else{
 			this._fn= fn
 		}
-		this._sink= null
-		this._scheduler= null
-		this._unsubscribe= null
-		this._complete= null
 	}
 	run( sink, scheduler) {
 		var isNew= !this._sink
